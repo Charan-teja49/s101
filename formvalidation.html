@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+</head>
+<body>
+
+  <h1>Registration Form</h1>
+  
+  <form onsubmit="return validateForm()">
+    Name: <input type="text" id="name"><br><br>
+    Email: <input type="text" id="email"><br><br>
+    Password: <input type="password" id="password"><br><br>
+    <input type="submit" value="Register">
+  </form>
+
+  <p id="error" style="color:red;"></p>
+
+  <script>
+    function validateForm() {
+      // Get input values
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var error = document.getElementById("error");
+
+      // Reset error message
+      error.innerText = "";
+
+      // Basic validations
+      if (name === ""  email === ""  password === "") {
+        error.innerText = "All fields are required!";
+        return false; // prevent form submission
+      }
+
+      // Email format check
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        error.innerText = "Invalid email format!";
+        return false;
+      }
+
+      // Password length check
+      if (password.length < 6) {
+        error.innerText = "Password must be at least 6 characters long!";
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true; // allow form submission
+    }
+  </script>
+
+</body>
+</html>
